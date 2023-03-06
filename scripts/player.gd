@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	# Face the sprite to the movement direction
 	if direction != 0:
 		$Sprite2D.flip_h = direction > 0
-		$Sprite2D.rotation = direction * PI / 20
+		$Sprite2D.rotation = direction * PI / 30
 	else:
 		$Sprite2D.rotation = 0
 	
@@ -40,6 +40,6 @@ func _physics_process(delta: float) -> void:
 func update_anim() -> void:
 	if %AnimationPlayer.is_playing():
 		if !is_on_floor() || velocity.x == 0:
-			%AnimationPlayer.stop()
+			%AnimationPlayer.play("RESET")
 	elif is_on_floor() && velocity.x != 0:
 		%AnimationPlayer.play("run")

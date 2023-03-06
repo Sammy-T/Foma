@@ -1255,7 +1255,7 @@ terrain_set_0/terrain_6/name = "Platform 1"
 terrain_set_0/terrain_6/color = Color(0.882353, 0.388235, 0.219608, 1)
 sources/0 = SubResource("TileSetAtlasSource_u5jm5")
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_megtk")
 player = NodePath("Player")
 

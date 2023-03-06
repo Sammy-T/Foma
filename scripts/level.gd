@@ -1,9 +1,7 @@
 extends Node2D
 
 
-@export var player: NodePath
-
-@onready var player_node: CharacterBody2D = get_node_or_null(player)
+@export var player: CharacterBody2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,7 +15,7 @@ func _process(_delta: float) -> void:
 
 
 func _update_debug() -> void:
-	if !%DebugContainer.visible || !player_node:
+	if !%DebugContainer.visible || !player:
 		return
 	
-	%PlayerVelocity.text = "Velocity: %s" % player_node.velocity
+	%PlayerVelocity.text = "Velocity: %s" % player.velocity

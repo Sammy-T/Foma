@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bypvbvb68a2v4"]
+[gd_scene load_steps=8 format=3 uid="uid://bypvbvb68a2v4"]
 
 [ext_resource type="Texture2D" uid="uid://53og0akas2i8" path="res://assets/kenney_pixelplatformer/Characters/character_0000.png" id="1_7nnuc"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_f0a1w"]
+[ext_resource type="Texture2D" uid="uid://vwm6hnqkp320" path="res://assets/kenney_pixelplatformer/Characters/character_0001.png" id="3_010vf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1vhj"]
 height = 28.0
@@ -30,6 +31,18 @@ tracks/1/keys = {
 "points": PackedFloat32Array(1.5, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_7nnuc")]
+}
 
 [sub_resource type="Animation" id="Animation_w78xl"]
 resource_name = "run"
@@ -57,6 +70,18 @@ tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(1.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_010vf"), ExtResource("1_7nnuc"), ExtResource("3_010vf"), ExtResource("1_7nnuc"), ExtResource("3_010vf")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vsghj"]

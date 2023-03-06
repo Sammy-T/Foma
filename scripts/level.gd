@@ -18,4 +18,4 @@ func _update_debug() -> void:
 	if !%DebugContainer.visible || !player:
 		return
 	
-	%PlayerVelocity.text = "Velocity: %s" % player.velocity
+	%PlayerVelocity.text = "Velocity: %s" % Vector2i(player.velocity)

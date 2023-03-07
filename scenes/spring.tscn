@@ -26,6 +26,7 @@ animations = [{
 [node name="Spring" type="Area2D"]
 collision_mask = 2
 input_pickable = false
+monitorable = false
 script = ExtResource("1_lhcdy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

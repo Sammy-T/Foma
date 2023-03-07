@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bal8pcv3uyy6a"]
+
+[ext_resource type="Script" path="res://scripts/valuable.gd" id="1_7qmtx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pn7ov"]
+
+[node name="Valuable" type="Area2D" groups=["valuable"]]
+collision_layer = 8
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_7qmtx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pn7ov")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -8,10 +8,10 @@ var coin_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var coins: Array[Node] = get_tree().get_nodes_in_group("coin")
+	var valuables: Array[Node] = get_tree().get_nodes_in_group("valuable")
 	
-	for coin in coins:
-		coin.coin_collected.connect(_update_coin_count)
+	for valuable in valuables:
+		valuable.valuable_collected.connect(_update_coin_count)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,6 +26,6 @@ func _update_debug() -> void:
 	%PlayerVelocity.text = "Velocity: %s" % Vector2i(player.velocity)
 
 
-func _update_coin_count() -> void:
-	coin_count += 1
+func _update_coin_count(value: int) -> void:
+	coin_count += value
 	%CoinCount.text = "x%d" % coin_count

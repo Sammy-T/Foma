@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctbx2enob24vu"]
+
+[ext_resource type="PackedScene" uid="uid://bal8pcv3uyy6a" path="res://scenes/pickups/valuable.tscn" id="1_51t6u"]
+[ext_resource type="Texture2D" uid="uid://w25a70e2pugi" path="res://assets/kenney_pixelplatformer/Tiles/tile_0067.png" id="2_nnb32"]
+
+[sub_resource type="Animation" id="Animation_vrv3u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dwos5"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r07h2"]
+_data = {
+"RESET": SubResource("Animation_vrv3u"),
+"pulse": SubResource("Animation_dwos5")
+}
+
+[node name="Gem" instance=ExtResource("1_51t6u")]
+value = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_nnb32")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+autoplay = "pulse"
+libraries = {
+"": SubResource("AnimationLibrary_r07h2")
+}

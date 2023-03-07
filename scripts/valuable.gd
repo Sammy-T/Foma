@@ -1,7 +1,9 @@
 extends Area2D
 
 
-signal coin_collected
+signal valuable_collected(value: int)
+
+@export var value: int = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,5 +17,5 @@ signal coin_collected
 
 
 func _on_body_entered(_body: Node2D) -> void:
-	emit_signal("coin_collected")
+	valuable_collected.emit(value)
 	queue_free()

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://d075imfme8o2t"]
+
+[ext_resource type="PackedScene" uid="uid://bal8pcv3uyy6a" path="res://scenes/pickups/valuable.tscn" id="1_kehso"]
+[ext_resource type="Texture2D" uid="uid://b1cd6upg218v5" path="res://assets/kenney_pixelplatformer/Tiles/tile_0151.png" id="1_vdt3e"]
+[ext_resource type="Texture2D" uid="uid://b6ku7s5scothh" path="res://assets/kenney_pixelplatformer/Tiles/tile_0152.png" id="2_06n1y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eg0co"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vdt3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_06n1y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Coin" instance=ExtResource("1_kehso")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_eg0co")
+autoplay = "default"

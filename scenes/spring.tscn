@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwqcboh6s02yw"]
+
+[ext_resource type="Script" path="res://scripts/spring.gd" id="1_lhcdy"]
+[ext_resource type="Texture2D" uid="uid://cup0jbbibutto" path="res://assets/kenney_pixelplatformer/Tiles/tile_0108.png" id="1_yqpdi"]
+[ext_resource type="Texture2D" uid="uid://dip8bd503qngb" path="res://assets/kenney_pixelplatformer/Tiles/tile_0107.png" id="2_kghxn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy8xy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1ybw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yqpdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kghxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_yqpdi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[node name="Spring" type="Area2D"]
+collision_mask = 2
+input_pickable = false
+script = ExtResource("1_lhcdy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fy8xy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_y1ybw")
+frame = 2
+frame_progress = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

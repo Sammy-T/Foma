@@ -39,15 +39,15 @@ func _physics_process(delta: float) -> void:
 		$Sprite2D.rotation = 0
 	
 	move_and_slide()
-	update_anim()
+	update_motion_anim()
 
 
-func update_anim() -> void:
-	if %AnimationPlayer.is_playing():
+func update_motion_anim() -> void:
+	if %AnimationTree["parameters/Motion/current_state"] == "run":
 		if !is_on_floor() || velocity.x == 0:
-			%AnimationPlayer.play("RESET")
+			%AnimationTree["parameters/Motion/transition_request"] = "idle"
 	elif is_on_floor() && velocity.x != 0:
-		%AnimationPlayer.play("run")
+		%AnimationTree["parameters/Motion/transition_request"] = "run"
 
 
 func take_damage(damage: int) -> void:
@@ -56,3 +56,5 @@ func take_damage(damage: int) -> void:
 	
 	health = clamp(health - damage, 0, 3)
 	health_changed.emit(health)
+	
+	%AnimationTree["parameters/DmgEffect/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE

@@ -1372,19 +1372,3 @@ layer_2/tile_data = PackedInt32Array(2621511, 262144, 1, 2555975, 327680, 0, 249
 
 [node name="Player" parent="." instance=ExtResource("3_6dq70")]
 position = Vector2(84, 444)
-
-[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88145" to="TileMap/@Coin@88145" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88146" to="TileMap/@Coin@88146" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88147" to="TileMap/@Coin@88147" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Gem" to="TileMap/Gem" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88148" to="TileMap/@Coin@88148" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88149" to="TileMap/@Coin@88149" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88150" to="TileMap/@Coin@88150" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88151" to="TileMap/@Coin@88151" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Spring" to="TileMap/Spring" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88153" to="TileMap/@Coin@88153" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88154" to="TileMap/@Coin@88154" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88155" to="TileMap/@Coin@88155" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@88168" to="TileMap/@Coin@88168" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Spikes" to="TileMap/Spikes" method="_on_body_entered" flags=18]

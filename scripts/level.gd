@@ -8,15 +8,22 @@ var coin_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var valuables: Array[Node] = get_tree().get_nodes_in_group("valuable")
-	
-	for valuable in valuables:
-		valuable.valuable_collected.connect(_update_coin_count)
+	# Use call_deferred to allow the TileMap's scene tiles to be instantiated
+	# before trying to access them. (https://github.com/godotengine/godot/issues/57567)
+	call_deferred("_init_valuables")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	_update_debug()
+
+
+# A helper used in deferring access to the TileMap's instantiated scene tiles
+func _init_valuables() -> void:
+	var valuables: Array[Node] = get_tree().get_nodes_in_group("valuable")
+	
+	for valuable in valuables:
+		valuable.valuable_collected.connect(_update_coin_count)
 
 
 func _update_debug() -> void:

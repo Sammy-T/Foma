@@ -151,7 +151,7 @@ nodes/Idle/node = SubResource("AnimationNodeAnimation_2w2d5")
 nodes/Idle/position = Vector2(-460, 140)
 nodes/Motion/node = SubResource("AnimationNodeTransition_84ray")
 nodes/Motion/position = Vector2(-240, 140)
-node_connections = [&"output", 0, &"DmgEffect", &"Motion", 0, &"Idle", &"Motion", 1, &"Animation", &"DmgEffect", 0, &"Motion", &"DmgEffect", 1, &"Damage"]
+node_connections = [&"output", 0, &"DmgEffect", &"DmgEffect", 0, &"Motion", &"DmgEffect", 1, &"Damage", &"Motion", 0, &"Idle", &"Motion", 1, &"Animation"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2

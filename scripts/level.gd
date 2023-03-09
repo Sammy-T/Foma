@@ -42,4 +42,4 @@ func _update_coin_count(value: int) -> void:
 
 
 func _update_health_display(health: float) -> void:
-	%HealthAmt.text = "%d" % health
+	%HealthAmt.text = "%s" % health

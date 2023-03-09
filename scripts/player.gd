@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 
-signal health_changed(health: int)
+signal health_changed(health: float)
 
 const MAX_SPEED: float = 250.0
 const ACCELERATION: float = 20.0
@@ -54,7 +54,20 @@ func take_damage(damage: int) -> void:
 	var bounce: Vector2 = -velocity.normalized() if velocity != Vector2.ZERO else Vector2.UP
 	velocity = bounce * 300
 	
-	health = clamp(health - damage, 0, 3)
+	health = clamp(health - damage, 0, 3.0)
 	health_changed.emit(health)
 	
 	%AnimationTree["parameters/DmgEffect/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+
+
+# Attempts to change the health and returns whether the health was successfully changed.
+func add_health(amount: float) -> bool:
+	var prev_health: float = health
+	
+	health = clamp(health + amount, 0, 3.0)
+	
+	if health != prev_health:
+		health_changed.emit(health)
+		return true
+	
+	return false

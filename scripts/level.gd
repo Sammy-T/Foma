@@ -11,6 +11,9 @@ func _ready() -> void:
 	# Use call_deferred to allow the TileMap's scene tiles to be instantiated
 	# before trying to access them. (https://github.com/godotengine/godot/issues/57567)
 	call_deferred("_init_valuables")
+	
+	_update_health_display(player.health)
+	player.health_changed.connect(_update_health_display)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,3 +39,7 @@ func _update_debug() -> void:
 func _update_coin_count(value: int) -> void:
 	coin_count += value
 	%CoinCount.text = "x%d" % coin_count
+
+
+func _update_health_display(health: float) -> void:
+	%HealthAmt.text = "%d" % health

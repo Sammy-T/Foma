@@ -2,12 +2,16 @@ class_name Player
 extends CharacterBody2D
 
 
+signal health_changed(health: int)
+
 const MAX_SPEED: float = 250.0
 const ACCELERATION: float = 20.0
 const JUMP_VELOCITY: float = -350.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var health: float = 3.0
 
 
 func _physics_process(delta: float) -> void:
@@ -44,3 +48,11 @@ func update_anim() -> void:
 			%AnimationPlayer.play("RESET")
 	elif is_on_floor() && velocity.x != 0:
 		%AnimationPlayer.play("run")
+
+
+func take_damage(damage: int) -> void:
+	var bounce: Vector2 = -velocity.normalized() if velocity != Vector2.ZERO else Vector2.UP
+	velocity = bounce * 300
+	
+	health = clamp(health - damage, 0, 3)
+	health_changed.emit(health)

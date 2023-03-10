@@ -30,8 +30,8 @@ func _physics_process(delta: float) -> void:
 		is_jumping = true
 	elif Input.is_action_just_released("jump") and is_jumping:
 		# Cut the jump short
-		if velocity.y < -75:
-			velocity.y = -75
+		if velocity.y < 0:
+			velocity.y *= 0.5
 		is_jumping = false
 	
 	# Get the input direction and handle the movement/deceleration.

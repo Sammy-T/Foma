@@ -52,15 +52,24 @@ func _physics_process(delta: float) -> void:
 		$Sprite2D.rotation = 0
 	
 	move_and_slide()
-	update_motion_anim()
+	update_anim_state()
+	update_particle_state(direction)
 
 
-func update_motion_anim() -> void:
+func update_anim_state() -> void:
 	if anim_tree["parameters/Motion/current_state"] == "run":
 		if !is_on_floor() || velocity.x == 0:
 			anim_tree["parameters/Motion/transition_request"] = "idle"
 	elif is_on_floor() && velocity.x != 0:
 		anim_tree["parameters/Motion/transition_request"] = "run"
+
+
+func update_particle_state(direction: float) -> void:
+	if direction != 0 && is_on_floor():
+		%RunParticles.emitting = true
+		%RunParticles.process_material.direction.x = 1 if direction > 0 else -1
+	else:
+		%RunParticles.emitting = false
 
 
 # Attempts to change the health and returns whether the health was successfully changed.

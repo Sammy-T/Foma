@@ -13,6 +13,9 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var health: float = 3.0
 var is_jumping: bool = false
+var is_taking_dmg: bool = false
+
+@onready var anim_tree: AnimationTree = %AnimationTree
 
 
 func _physics_process(delta: float) -> void:
@@ -29,9 +32,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 	elif Input.is_action_just_released("jump") and is_jumping:
-		# Cut the jump short
 		if velocity.y < 0:
-			velocity.y *= 0.5
+			velocity.y *= 0.5 # Cut the jump short
 		is_jumping = false
 	
 	# Get the input direction and handle the movement/deceleration.
@@ -54,31 +56,37 @@ func _physics_process(delta: float) -> void:
 
 
 func update_motion_anim() -> void:
-	if %AnimationTree["parameters/Motion/current_state"] == "run":
+	if anim_tree["parameters/Motion/current_state"] == "run":
 		if !is_on_floor() || velocity.x == 0:
-			%AnimationTree["parameters/Motion/transition_request"] = "idle"
+			anim_tree["parameters/Motion/transition_request"] = "idle"
 	elif is_on_floor() && velocity.x != 0:
-		%AnimationTree["parameters/Motion/transition_request"] = "run"
-
-
-func take_damage(damage: int) -> void:
-	var bounce: Vector2 = -velocity.normalized() if velocity != Vector2.ZERO else Vector2.UP
-	velocity = bounce * 300
-	
-	health = clamp(health - damage, 0, 3.0)
-	health_changed.emit(health)
-	
-	%AnimationTree["parameters/DmgEffect/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		anim_tree["parameters/Motion/transition_request"] = "run"
 
 
 # Attempts to change the health and returns whether the health was successfully changed.
-func add_health(amount: float) -> bool:
+func update_health(delta: float) -> bool:
+	if delta < 0:
+		if is_taking_dmg:
+			return false # Return early if already taking damage (e.g. hitting multiple Spikes)
+		
+		is_taking_dmg = true
+		
+		# Bounce the player
+		var bounce: Vector2 = -velocity.normalized() if velocity != Vector2.ZERO else Vector2.UP
+		velocity = bounce * 300
+		
+		# Play the damage animation
+		anim_tree["parameters/DmgEffect/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	
 	var prev_health: float = health
 	
-	health = clamp(health + amount, 0, 3.0)
+	health = clamp(health + delta, 0, 3.0) # Update the health
+	health_changed.emit(health)
 	
-	if health != prev_health:
-		health_changed.emit(health)
-		return true
-	
-	return false
+	return health != prev_health
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		"take_damage":
+			is_taking_dmg = false

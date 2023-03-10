@@ -1,7 +1,7 @@
 extends Area2D
 
 
-const DAMAGE: int = 1
+const DAMAGE: int = -1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,7 +15,7 @@ const DAMAGE: int = 1
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if !"take_damage" in body:
+	if !"update_health" in body:
 		return
 	
-	body.take_damage(DAMAGE)
+	body.update_health(DAMAGE)

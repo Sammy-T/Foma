@@ -15,9 +15,9 @@ const HEAL_AMOUNT: float = 0.5
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if !"add_health" in body:
+	if !"update_health" in body:
 		return
 	
 	# Free the node if the health was successfully added
-	if body.add_health(HEAL_AMOUNT):
+	if body.update_health(HEAL_AMOUNT):
 		queue_free()

@@ -12,16 +12,25 @@ const JUMP_VELOCITY: float = -350.0
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var health: float = 3.0
+var is_jumping: bool = false
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not is_jumping:
 		velocity.y += gravity * delta
-
+	elif is_on_floor():
+		is_jumping = false
+	
+	## TODO: Short jump on quick release, long jump on hold?
+	
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_released("jump") and not is_on_floor():
+		is_jumping = false
+	elif Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = -270 #JUMP_VELOCITY
+		is_jumping = true
+		%JumpTimer.start()
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction: float = Input.get_axis("move_left", "move_right")
@@ -71,3 +80,7 @@ func add_health(amount: float) -> bool:
 		return true
 	
 	return false
+
+
+func _on_jump_timer_timeout() -> void:
+	is_jumping = false

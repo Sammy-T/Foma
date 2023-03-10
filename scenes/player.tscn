@@ -140,7 +140,6 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_k5x5q"]
-graph_offset = Vector2(-835.809, 129.044)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ao4ty")
 nodes/Animation/position = Vector2(-460, 260)
 nodes/Damage/node = SubResource("AnimationNodeAnimation_28t6j")
@@ -191,3 +190,10 @@ parameters/DmgEffect/request = 0
 parameters/Motion/current_state = "idle"
 parameters/Motion/transition_request = ""
 parameters/Motion/current_index = 0
+
+[node name="JumpTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

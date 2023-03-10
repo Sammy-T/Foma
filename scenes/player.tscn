@@ -190,10 +190,3 @@ parameters/DmgEffect/request = 0
 parameters/Motion/current_state = "idle"
 parameters/Motion/transition_request = ""
 parameters/Motion/current_index = 0
-
-[node name="JumpTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.2
-one_shot = true
-
-[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

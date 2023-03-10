@@ -17,21 +17,23 @@ var is_jumping: bool = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor() and not is_jumping:
+	if not is_on_floor():
 		velocity.y += gravity * delta
-	elif is_on_floor():
+	else:
 		is_jumping = false
-	
-	## TODO: Short jump on quick release, long jump on hold?
 	
 	# Handle Jump.
-	if Input.is_action_just_released("jump") and not is_on_floor():
-		is_jumping = false
-	elif Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = -270 #JUMP_VELOCITY
+	# Negative vertical velocity can be caused by a Spring device
+	# so use 'is_jumping' to determine when air-time is player-triggered.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 		is_jumping = true
-		%JumpTimer.start()
-
+	elif Input.is_action_just_released("jump") and is_jumping:
+		# Cut the jump short
+		if velocity.y < -75:
+			velocity.y = -75
+		is_jumping = false
+	
 	# Get the input direction and handle the movement/deceleration.
 	var direction: float = Input.get_axis("move_left", "move_right")
 	
@@ -80,7 +82,3 @@ func add_health(amount: float) -> bool:
 		return true
 	
 	return false
-
-
-func _on_jump_timer_timeout() -> void:
-	is_jumping = false

@@ -21,4 +21,9 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	%AnimatedSprite2D.play("default") # Play the bounce animation
 	
+	# Ensure the bounce doesn't get confused with player input.
+	# This can happen if the player jumps onto a Spring and releases the jump
+	# after bouncing.
+	body.is_jumping = false
+	
 	body.velocity.y = SPRING_VELOCITY # Use the spring's velocity to bounce the player

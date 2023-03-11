@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bypvbvb68a2v4"]
+[gd_scene load_steps=29 format=3 uid="uid://bypvbvb68a2v4"]
 
 [ext_resource type="Texture2D" uid="uid://53og0akas2i8" path="res://assets/kenney_pixelplatformer/Characters/character_0000.png" id="1_7nnuc"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_f0a1w"]
@@ -54,6 +54,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Particles/LandingParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_i43cl"]
@@ -176,6 +188,18 @@ tracks/1/keys = {
 "points": PackedFloat32Array(0.666667, -0.25, 0, 0.25, 0, 1.08333, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.1, 0.4)
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Particles/LandingParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vsghj"]
 _data = {
@@ -263,6 +287,34 @@ angle_max = 250.1
 scale_curve = SubResource("CurveTexture_aqktd")
 color_ramp = SubResource("GradientTexture1D_g1ki1")
 
+[sub_resource type="Gradient" id="Gradient_uokyo"]
+offsets = PackedFloat32Array(0.362963, 1)
+colors = PackedColorArray(0.877616, 0.877616, 0.877616, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c6mtg"]
+gradient = SubResource("Gradient_uokyo")
+width = 8
+
+[sub_resource type="Curve" id="Curve_h5w1i"]
+max_value = 10.0
+_data = [Vector2(0, 1), 0.0, 50.303, 0, 0, Vector2(0.289157, 6.63636), 0.0, 0.0, 0, 0, Vector2(1, 1), -13.5818, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tjvc6"]
+width = 32
+curve = SubResource("Curve_h5w1i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bjnwt"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 90.47
+initial_velocity_min = 73.68
+initial_velocity_max = 157.89
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_tjvc6")
+color_ramp = SubResource("GradientTexture1D_c6mtg")
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_f0a1w")
@@ -271,8 +323,6 @@ script = ExtResource("1_f0a1w")
 shape = SubResource("CapsuleShape2D_b1vhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 0.141677)
-scale = Vector2(1, 0.988194)
 texture = ExtResource("1_7nnuc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -305,12 +355,23 @@ parameters/Motion/current_state = "idle"
 parameters/Motion/transition_request = ""
 parameters/Motion/current_index = 0
 
-[node name="RunParticles" type="GPUParticles2D" parent="."]
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="RunParticles" type="GPUParticles2D" parent="Particles"]
 unique_name_in_owner = true
 z_index = -1
 position = Vector2(0, 12)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_v64vb")
 lifetime = 0.4
+
+[node name="LandingParticles" type="GPUParticles2D" parent="Particles"]
+z_index = -1
+position = Vector2(0, 12)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_bjnwt")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.78
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

@@ -14,6 +14,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var health: float = 3.0
 var is_jumping: bool = false
 var is_taking_dmg: bool = false
+var was_on_floor: bool = false
 
 @onready var anim_tree: AnimationTree = %AnimationTree
 
@@ -62,6 +63,12 @@ func update_anim_state() -> void:
 			anim_tree["parameters/Motion/transition_request"] = "idle"
 	elif is_on_floor() && velocity.x != 0:
 		anim_tree["parameters/Motion/transition_request"] = "run"
+	
+	# Play the landing animation when contacting the floor
+	if is_on_floor() && !was_on_floor:
+		anim_tree["parameters/LandingEffect/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	
+	was_on_floor = is_on_floor()
 
 
 func update_particle_state(direction: float) -> void:

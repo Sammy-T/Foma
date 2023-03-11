@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bypvbvb68a2v4"]
+[gd_scene load_steps=24 format=3 uid="uid://bypvbvb68a2v4"]
 
 [ext_resource type="Texture2D" uid="uid://53og0akas2i8" path="res://assets/kenney_pixelplatformer/Characters/character_0000.png" id="1_7nnuc"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_f0a1w"]
@@ -28,7 +28,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.5, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "value"
@@ -54,6 +54,45 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i43cl"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.875, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_7nnuc")]
 }
 
 [sub_resource type="Animation" id="Animation_w78xl"]
@@ -112,10 +151,9 @@ tracks/0/keys = {
 "values": [Color(1, 0.494118, 0.439216, 1), Color(1, 1, 1, 1), Color(1, 0.494118, 0.439216, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_i43cl"]
-resource_name = "idle"
-length = 2.0
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_pep32"]
+resource_name = "landing"
+length = 0.4
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -124,8 +162,8 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
+"points": PackedFloat32Array(4, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.4)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -135,26 +173,15 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.875, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_7nnuc")]
+"points": PackedFloat32Array(0.666667, -0.25, 0, 0.25, 0, 1.08333, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.4)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vsghj"]
 _data = {
 "RESET": SubResource("Animation_otrfm"),
 "idle": SubResource("Animation_i43cl"),
+"landing": SubResource("Animation_pep32"),
 "run": SubResource("Animation_w78xl"),
 "take_damage": SubResource("Animation_y52ak")
 }
@@ -168,6 +195,12 @@ mix_mode = 1
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2w2d5"]
 animation = &"idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eh8y8"]
+animation = &"landing"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0h1hk"]
+mix_mode = 1
+
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_84ray"]
 input_0/name = "idle"
 input_0/auto_advance = false
@@ -180,18 +213,22 @@ input_1/reset = true
 animation = &"run"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_k5x5q"]
-graph_offset = Vector2(-737, 115)
+graph_offset = Vector2(-836.86, 102.523)
 nodes/Damage/node = SubResource("AnimationNodeAnimation_28t6j")
 nodes/Damage/position = Vector2(-100, 220)
 nodes/DmgEffect/node = SubResource("AnimationNodeOneShot_58evp")
 nodes/DmgEffect/position = Vector2(100, 140)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_2w2d5")
-nodes/Idle/position = Vector2(-460, 140)
+nodes/Idle/position = Vector2(-800, 140)
+nodes/Landing/node = SubResource("AnimationNodeAnimation_eh8y8")
+nodes/Landing/position = Vector2(-440, 220)
+nodes/LandingEffect/node = SubResource("AnimationNodeOneShot_0h1hk")
+nodes/LandingEffect/position = Vector2(-260, 140)
 nodes/Motion/node = SubResource("AnimationNodeTransition_84ray")
-nodes/Motion/position = Vector2(-240, 140)
+nodes/Motion/position = Vector2(-580, 140)
 nodes/Run/node = SubResource("AnimationNodeAnimation_ao4ty")
-nodes/Run/position = Vector2(-460, 260)
-node_connections = [&"output", 0, &"DmgEffect", &"DmgEffect", 0, &"Motion", &"DmgEffect", 1, &"Damage", &"Motion", 0, &"Idle", &"Motion", 1, &"Run"]
+nodes/Run/position = Vector2(-800, 260)
+node_connections = [&"output", 0, &"DmgEffect", &"DmgEffect", 0, &"LandingEffect", &"DmgEffect", 1, &"Damage", &"Motion", 0, &"Idle", &"Motion", 1, &"Run", &"LandingEffect", 0, &"Motion", &"LandingEffect", 1, &"Landing"]
 
 [sub_resource type="Gradient" id="Gradient_bmwup"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -234,8 +271,8 @@ script = ExtResource("1_f0a1w")
 shape = SubResource("CapsuleShape2D_b1vhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 1.48447)
-scale = Vector2(1, 0.876294)
+position = Vector2(0, 0.141677)
+scale = Vector2(1, 0.988194)
 texture = ExtResource("1_7nnuc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -262,6 +299,8 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/DmgEffect/active = false
 parameters/DmgEffect/request = 0
+parameters/LandingEffect/active = false
+parameters/LandingEffect/request = 0
 parameters/Motion/current_state = "idle"
 parameters/Motion/transition_request = ""
 parameters/Motion/current_index = 0

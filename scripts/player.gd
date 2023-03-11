@@ -16,7 +16,9 @@ var is_jumping: bool = false
 var is_taking_dmg: bool = false
 var was_on_floor: bool = false
 
+@onready var sprite: Sprite2D = %Sprite2D
 @onready var anim_tree: AnimationTree = %AnimationTree
+@onready var run_particles: GPUParticles2D = %RunParticles
 
 
 func _physics_process(delta: float) -> void:
@@ -47,10 +49,10 @@ func _physics_process(delta: float) -> void:
 	
 	# Face the sprite to the movement direction
 	if direction != 0:
-		$Sprite2D.flip_h = direction > 0
-		$Sprite2D.rotation = direction * PI / 30
+		sprite.flip_h = direction > 0
+		sprite.rotation = direction * PI / 30
 	else:
-		$Sprite2D.rotation = 0
+		sprite.rotation = 0
 	
 	move_and_slide()
 	update_anim_state()
@@ -73,10 +75,10 @@ func update_anim_state() -> void:
 
 func update_particle_state(direction: float) -> void:
 	if direction != 0 && is_on_floor():
-		%RunParticles.emitting = true
-		%RunParticles.process_material.direction.x = 1 if direction > 0 else -1
+		run_particles.emitting = true
+		run_particles.process_material.direction.x = 1 if direction > 0 else -1
 	else:
-		%RunParticles.emitting = false
+		run_particles.emitting = false
 
 
 # Attempts to change the health and returns whether the health was successfully changed.

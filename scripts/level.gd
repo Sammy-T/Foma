@@ -5,6 +5,11 @@ extends Node2D
 
 var coin_count: int = 0
 
+@onready var debug_container: MarginContainer = %DebugContainer
+@onready var velocity_display: Label = %PlayerVelocity
+@onready var health_display: Label = %HealthAmt
+@onready var coin_display: Label = %CoinCount
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,16 +35,16 @@ func _init_valuables() -> void:
 
 
 func _update_debug() -> void:
-	if !%DebugContainer.visible || !player:
+	if !debug_container.visible || !player:
 		return
 	
-	%PlayerVelocity.text = "Velocity: %s" % Vector2i(player.velocity)
+	velocity_display.text = "Velocity: %s" % Vector2i(player.velocity)
 
 
 func _update_coin_count(value: int) -> void:
 	coin_count += value
-	%CoinCount.text = "x%d" % coin_count
+	coin_display.text = "x%d" % coin_count
 
 
 func _update_health_display(health: float) -> void:
-	%HealthAmt.text = "%s" % health
+	health_display.text = "%s" % health

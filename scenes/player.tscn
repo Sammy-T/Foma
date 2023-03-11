@@ -323,6 +323,7 @@ script = ExtResource("1_f0a1w")
 shape = SubResource("CapsuleShape2D_b1vhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("1_7nnuc")
 
 [node name="Camera2D" type="Camera2D" parent="."]

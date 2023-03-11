@@ -5,6 +5,8 @@ signal valuable_collected(value: int)
 
 @export var value: int = 1
 
+@onready var anim_player: AnimationPlayer = %AnimationPlayer
+
 
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
@@ -18,4 +20,8 @@ signal valuable_collected(value: int)
 
 func _on_body_entered(_body: Node2D) -> void:
 	valuable_collected.emit(value)
-	queue_free()
+	
+	if anim_player.has_animation("collect"):
+		anim_player.play("collect")
+	else:
+		queue_free()

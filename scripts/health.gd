@@ -3,6 +3,8 @@ extends Area2D
 
 const HEAL_AMOUNT: float = 0.5
 
+@onready var anim_player: AnimationPlayer = %AnimationPlayer
+
 
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
@@ -20,4 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	# Free the node if the health was successfully added
 	if body.update_health(HEAL_AMOUNT):
-		queue_free()
+		if anim_player.has_animation("collect"):
+			anim_player.play("collect")
+		else:
+			queue_free()

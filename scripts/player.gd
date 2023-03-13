@@ -101,6 +101,9 @@ func update_health(delta: float) -> bool:
 	health = clamp(health + delta, 0, 3.0) # Update the health
 	health_changed.emit(health)
 	
+	if health == 0:
+		anim_tree["parameters/Motion/transition_request"] = "death"
+	
 	return health != prev_health
 
 

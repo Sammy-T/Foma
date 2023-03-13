@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bypvbvb68a2v4"]
+[gd_scene load_steps=31 format=3 uid="uid://bypvbvb68a2v4"]
 
 [ext_resource type="Texture2D" uid="uid://53og0akas2i8" path="res://assets/kenney_pixelplatformer/Characters/character_0000.png" id="1_7nnuc"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_f0a1w"]
@@ -66,6 +66,28 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_i43cl"]
@@ -201,9 +223,86 @@ tracks/0/keys = {
 "values": [Color(1, 0.494118, 0.439216, 1), Color(1, 1, 1, 1), Color(1, 0.494118, 0.439216, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_3attt"]
+resource_name = "death"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.55334, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.552941)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_physics_process"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"update_particle_state"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vsghj"]
 _data = {
 "RESET": SubResource("Animation_otrfm"),
+"death": SubResource("Animation_3attt"),
 "idle": SubResource("Animation_i43cl"),
 "landing": SubResource("Animation_pep32"),
 "run": SubResource("Animation_w78xl"),
@@ -212,6 +311,9 @@ _data = {
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_28t6j"]
 animation = &"take_damage"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bbo0p"]
+animation = &"death"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_58evp"]
 mix_mode = 1
@@ -232,14 +334,19 @@ input_0/reset = true
 input_1/name = "run"
 input_1/auto_advance = false
 input_1/reset = true
+input_2/name = "death"
+input_2/auto_advance = false
+input_2/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ao4ty"]
 animation = &"run"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_k5x5q"]
-graph_offset = Vector2(-836.86, 102.523)
+graph_offset = Vector2(-934.86, 84.523)
 nodes/Damage/node = SubResource("AnimationNodeAnimation_28t6j")
 nodes/Damage/position = Vector2(-100, 220)
+nodes/Death/node = SubResource("AnimationNodeAnimation_bbo0p")
+nodes/Death/position = Vector2(-800, 400)
 nodes/DmgEffect/node = SubResource("AnimationNodeOneShot_58evp")
 nodes/DmgEffect/position = Vector2(100, 140)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_2w2d5")
@@ -252,7 +359,7 @@ nodes/Motion/node = SubResource("AnimationNodeTransition_84ray")
 nodes/Motion/position = Vector2(-580, 140)
 nodes/Run/node = SubResource("AnimationNodeAnimation_ao4ty")
 nodes/Run/position = Vector2(-800, 260)
-node_connections = [&"output", 0, &"DmgEffect", &"DmgEffect", 0, &"LandingEffect", &"DmgEffect", 1, &"Damage", &"LandingEffect", 0, &"Motion", &"LandingEffect", 1, &"Landing", &"Motion", 0, &"Idle", &"Motion", 1, &"Run"]
+node_connections = [&"output", 0, &"DmgEffect", &"DmgEffect", 0, &"LandingEffect", &"DmgEffect", 1, &"Damage", &"LandingEffect", 0, &"Motion", &"LandingEffect", 1, &"Landing", &"Motion", 0, &"Idle", &"Motion", 1, &"Run", &"Motion", 2, &"Death"]
 
 [sub_resource type="Gradient" id="Gradient_bmwup"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -324,6 +431,8 @@ shape = SubResource("CapsuleShape2D_b1vhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, 1.299)
+scale = Vector2(1, 0.89175)
 texture = ExtResource("1_7nnuc")
 
 [node name="Camera2D" type="Camera2D" parent="."]

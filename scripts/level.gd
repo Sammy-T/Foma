@@ -6,7 +6,7 @@ extends Node2D
 var coin_count: int = 0
 
 @onready var debug_container: MarginContainer = %DebugContainer
-@onready var velocity_display: Label = %PlayerVelocity
+@onready var player_debug: Label = %PlayerDebug
 @onready var health_display: Label = %HealthAmt
 @onready var coin_display: Label = %CoinCount
 
@@ -38,7 +38,7 @@ func _update_debug() -> void:
 	if !debug_container.visible || !player:
 		return
 	
-	velocity_display.text = "Velocity: %s" % Vector2i(player.velocity)
+	player_debug.text = "Velocity: %s" % Vector2i(player.velocity)
 
 
 func _update_coin_count(value: int) -> void:

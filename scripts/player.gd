@@ -7,18 +7,21 @@ signal health_changed(health: float)
 const MAX_SPEED: float = 250.0
 const ACCELERATION: float = 20.0
 const JUMP_VELOCITY: float = -350.0
+const MOVEMENT_TILT: float = PI / 30
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var health: float = 3.0
 var is_jumping: bool = false
+var is_in_coyote_time: bool = false
 var is_taking_dmg: bool = false
 var was_on_floor: bool = false
 
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var anim_tree: AnimationTree = %AnimationTree
 @onready var run_particles: GPUParticles2D = %RunParticles
+@onready var coyote_timer: Timer = %CoyoteTimer
 
 
 func _physics_process(delta: float) -> void:
@@ -27,13 +30,13 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	else:
 		is_jumping = false
+		_cancel_coyote_time()
 	
 	# Handle Jump.
-	# Negative vertical velocity can be caused by a Spring device
-	# so use 'is_jumping' to determine when air-time is player-triggered.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and can_jump():
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
+		_cancel_coyote_time()
 	elif Input.is_action_just_released("jump") and is_jumping:
 		if velocity.y < 0:
 			velocity.y *= 0.5 # Cut the jump short
@@ -47,16 +50,44 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, ACCELERATION)
 	
-	# Face the sprite to the movement direction
+	# Face and tilt the player towards the movement direction
 	if direction != 0:
 		sprite.flip_h = direction > 0
-		rotation = direction * PI / 30
+		rotation = direction * MOVEMENT_TILT
 	else:
 		rotation = 0
 	
 	move_and_slide()
+	
+	_check_coyote_time()
+	
 	update_anim_state()
 	update_particle_state(direction)
+	
+	was_on_floor = is_on_floor()
+
+
+# A helper to determine whether the player can jump.
+# (Negative vertical velocity can be caused by a Spring device
+# so use 'is_jumping' to determine when air-time is player-triggered.)
+func can_jump() -> bool:
+	return is_on_floor() || (!is_jumping && is_in_coyote_time)
+
+
+# Checks if the player has just left the floor but isn't jumping, then initiates coyote time.
+# (This apparently must be done after move_and_slide 
+# to catch the 'is' <-> 'was' [_on_floor] transition.)
+func _check_coyote_time() -> void:
+	if not is_on_floor() and was_on_floor and not is_jumping:
+		is_in_coyote_time = true
+		coyote_timer.start()
+
+
+# A helper to stop coyote time
+func _cancel_coyote_time() -> void:
+	if is_in_coyote_time:
+		is_in_coyote_time = false
+		coyote_timer.stop()
 
 
 func update_anim_state() -> void:
@@ -69,8 +100,6 @@ func update_anim_state() -> void:
 	# Play the landing animation when contacting the floor
 	if is_on_floor() && !was_on_floor:
 		anim_tree["parameters/LandingEffect/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	
-	was_on_floor = is_on_floor()
 
 
 func update_particle_state(direction: float) -> void:
@@ -111,3 +140,7 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"take_damage":
 			is_taking_dmg = false
+
+
+func _on_coyote_timer_timeout() -> void:
+	is_in_coyote_time = false

@@ -7,6 +7,67 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1vhj"]
 height = 28.0
 
+[sub_resource type="Gradient" id="Gradient_bmwup"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g1ki1"]
+gradient = SubResource("Gradient_bmwup")
+width = 8
+
+[sub_resource type="Curve" id="Curve_r64pj"]
+max_value = 10.0
+bake_resolution = 32
+_data = [Vector2(0, 1), 0.0, 24.0083, 0, 0, Vector2(0.373494, 6.90909), 0.0742182, 0.0742182, 0, 0, Vector2(1, 1), -2.36037, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aqktd"]
+width = 32
+curve = SubResource("Curve_r64pj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v64vb"]
+particle_flag_disable_z = true
+direction = Vector3(1, -0.1, 0)
+spread = 9.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 63.16
+initial_velocity_max = 168.42
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 86.32
+damping_max = 100.0
+angle_min = -333.5
+angle_max = 250.1
+scale_curve = SubResource("CurveTexture_aqktd")
+color_ramp = SubResource("GradientTexture1D_g1ki1")
+
+[sub_resource type="Gradient" id="Gradient_uokyo"]
+offsets = PackedFloat32Array(0.362963, 1)
+colors = PackedColorArray(0.877616, 0.877616, 0.877616, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c6mtg"]
+gradient = SubResource("Gradient_uokyo")
+width = 8
+
+[sub_resource type="Curve" id="Curve_h5w1i"]
+max_value = 10.0
+_data = [Vector2(0, 1), 0.0, 50.303, 0, 0, Vector2(0.289157, 6.63636), 0.0, 0.0, 0, 0, Vector2(1, 1), -13.5818, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tjvc6"]
+width = 32
+curve = SubResource("Curve_h5w1i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bjnwt"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 90.47
+initial_velocity_min = 73.68
+initial_velocity_max = 157.89
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_tjvc6")
+color_ramp = SubResource("GradientTexture1D_c6mtg")
+
 [sub_resource type="Animation" id="Animation_otrfm"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -361,67 +422,6 @@ nodes/Run/node = SubResource("AnimationNodeAnimation_ao4ty")
 nodes/Run/position = Vector2(-800, 260)
 node_connections = [&"output", 0, &"DmgEffect", &"DmgEffect", 0, &"LandingEffect", &"DmgEffect", 1, &"Damage", &"LandingEffect", 0, &"Motion", &"LandingEffect", 1, &"Landing", &"Motion", 0, &"Idle", &"Motion", 1, &"Run", &"Motion", 2, &"Death"]
 
-[sub_resource type="Gradient" id="Gradient_bmwup"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_g1ki1"]
-gradient = SubResource("Gradient_bmwup")
-width = 8
-
-[sub_resource type="Curve" id="Curve_r64pj"]
-max_value = 10.0
-bake_resolution = 32
-_data = [Vector2(0, 1), 0.0, 24.0083, 0, 0, Vector2(0.373494, 6.90909), 0.0742182, 0.0742182, 0, 0, Vector2(1, 1), -2.36037, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_aqktd"]
-width = 32
-curve = SubResource("Curve_r64pj")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v64vb"]
-particle_flag_disable_z = true
-direction = Vector3(1, -0.1, 0)
-spread = 9.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 63.16
-initial_velocity_max = 168.42
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_min = 86.32
-damping_max = 100.0
-angle_min = -333.5
-angle_max = 250.1
-scale_curve = SubResource("CurveTexture_aqktd")
-color_ramp = SubResource("GradientTexture1D_g1ki1")
-
-[sub_resource type="Gradient" id="Gradient_uokyo"]
-offsets = PackedFloat32Array(0.362963, 1)
-colors = PackedColorArray(0.877616, 0.877616, 0.877616, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_c6mtg"]
-gradient = SubResource("Gradient_uokyo")
-width = 8
-
-[sub_resource type="Curve" id="Curve_h5w1i"]
-max_value = 10.0
-_data = [Vector2(0, 1), 0.0, 50.303, 0, 0, Vector2(0.289157, 6.63636), 0.0, 0.0, 0, 0, Vector2(1, 1), -13.5818, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_tjvc6"]
-width = 32
-curve = SubResource("Curve_h5w1i")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bjnwt"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 90.47
-initial_velocity_min = 73.68
-initial_velocity_max = 157.89
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_curve = SubResource("CurveTexture_tjvc6")
-color_ramp = SubResource("GradientTexture1D_c6mtg")
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_f0a1w")
@@ -431,8 +431,6 @@ shape = SubResource("CapsuleShape2D_b1vhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 1.46206)
-scale = Vector2(1, 0.878162)
 texture = ExtResource("1_7nnuc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -446,24 +444,6 @@ drag_top_margin = 0.65
 drag_right_margin = 0.07
 drag_bottom_margin = 0.1
 editor_draw_drag_margin = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_vsghj")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-unique_name_in_owner = true
-tree_root = SubResource("AnimationNodeBlendTree_k5x5q")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/DmgEffect/active = false
-parameters/DmgEffect/request = 0
-parameters/LandingEffect/active = false
-parameters/LandingEffect/request = 0
-parameters/Motion/current_state = "idle"
-parameters/Motion/transition_request = ""
-parameters/Motion/current_index = 0
 
 [node name="Particles" type="Node2D" parent="."]
 
@@ -484,4 +464,28 @@ lifetime = 0.3
 one_shot = true
 explosiveness = 0.78
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vsghj")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+tree_root = SubResource("AnimationNodeBlendTree_k5x5q")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/DmgEffect/active = false
+parameters/DmgEffect/request = 0
+parameters/LandingEffect/active = false
+parameters/LandingEffect/request = 0
+parameters/Motion/current_state = "idle"
+parameters/Motion/transition_request = ""
+parameters/Motion/current_index = 0
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.25
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

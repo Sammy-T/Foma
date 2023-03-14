@@ -50,9 +50,9 @@ func _physics_process(delta: float) -> void:
 	# Face the sprite to the movement direction
 	if direction != 0:
 		sprite.flip_h = direction > 0
-		sprite.rotation = direction * PI / 30
+		rotation = direction * PI / 30
 	else:
-		sprite.rotation = 0
+		rotation = 0
 	
 	move_and_slide()
 	update_anim_state()

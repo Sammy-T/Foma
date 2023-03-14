@@ -90,6 +90,82 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_3attt"]
+resource_name = "death"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.55334, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.552941)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_physics_process"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"update_particle_state"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_i43cl"]
 resource_name = "idle"
 length = 2.0
@@ -223,82 +299,6 @@ tracks/0/keys = {
 "values": [Color(1, 0.494118, 0.439216, 1), Color(1, 1, 1, 1), Color(1, 0.494118, 0.439216, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_3attt"]
-resource_name = "death"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -14, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.4)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.4)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.55334, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.4, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.552941)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_physics_process"
-}]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"update_particle_state"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vsghj"]
 _data = {
 "RESET": SubResource("Animation_otrfm"),
@@ -342,7 +342,7 @@ input_2/reset = true
 animation = &"run"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_k5x5q"]
-graph_offset = Vector2(-934.86, 84.523)
+graph_offset = Vector2(-674.058, 92.6611)
 nodes/Damage/node = SubResource("AnimationNodeAnimation_28t6j")
 nodes/Damage/position = Vector2(-100, 220)
 nodes/Death/node = SubResource("AnimationNodeAnimation_bbo0p")
@@ -431,8 +431,8 @@ shape = SubResource("CapsuleShape2D_b1vhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 1.299)
-scale = Vector2(1, 0.89175)
+position = Vector2(0, 1.46206)
+scale = Vector2(1, 0.878162)
 texture = ExtResource("1_7nnuc")
 
 [node name="Camera2D" type="Camera2D" parent="."]

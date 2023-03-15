@@ -12,8 +12,7 @@ var coin_count: int = 0
 
 @onready var debug_container: MarginContainer = %DebugContainer
 @onready var player_debug: Label = %PlayerDebug
-@onready var health_display: Label = %HealthAmt
-@onready var coin_display: Label = %CoinCount
+@onready var hud: MarginContainer = %HUD
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,9 +21,9 @@ func _ready() -> void:
 	# before trying to access them. (https://github.com/godotengine/godot/issues/57567)
 	call_deferred("_init_scene_tiles")
 	
-	_update_health_display(player.health)
+	hud.update_health_display(player.health)
 	
-	player.health_changed.connect(_update_health_display)
+	player.health_changed.connect(hud.update_health_display)
 	player.player_died.connect(_on_player_death)
 
 
@@ -60,11 +59,7 @@ func _update_debug() -> void:
 
 func _update_coin_count(value: int) -> void:
 	coin_count += value
-	coin_display.text = "x%d" % coin_count
-
-
-func _update_health_display(health: float) -> void:
-	health_display.text = "%s" % health
+	hud.update_coin_display(coin_count)
 
 
 func _on_player_death() -> void:

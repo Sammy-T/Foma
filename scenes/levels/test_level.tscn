@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqfy1xm4q13l1"]
+[gd_scene load_steps=17 format=3 uid="uid://dqfy1xm4q13l1"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_c2d0j"]
-[ext_resource type="Texture2D" uid="uid://cfak0xh7y3te5" path="res://assets/kenney_pixelplatformer/Tiles/tile_0044.png" id="2_cmhvr"]
-[ext_resource type="Texture2D" uid="uid://b1cd6upg218v5" path="res://assets/kenney_pixelplatformer/Tiles/tile_0151.png" id="3_ycdkr"]
+[ext_resource type="PackedScene" uid="uid://cfqjx3j1j24sp" path="res://scenes/gui/hud.tscn" id="2_wn6jx"]
 [ext_resource type="Texture2D" uid="uid://bojkimblc1j6q" path="res://assets/background-elements-redux-fix/Backgrounds/backgroundEmpty.png" id="4_7eohb"]
 [ext_resource type="Texture2D" uid="uid://00axrg1n4ed1" path="res://assets/kenney_pixelplatformer/Tilemap/tiles_packed.png" id="5_783ga"]
 [ext_resource type="PackedScene" uid="uid://d075imfme8o2t" path="res://scenes/pickups/coin.tscn" id="6_y3mea"]
@@ -1301,48 +1300,8 @@ layout_mode = 2
 text = "Velocity"
 label_settings = SubResource("LabelSettings_32qq0")
 
-[node name="HUD" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
-layout_mode = 2
-
-[node name="HealthDisplay" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="HealthAmt" type="Label" parent="CanvasLayer/HUD/VBoxContainer/HealthDisplay"]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_wn6jx")]
 unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_32qq0")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/VBoxContainer/HealthDisplay"]
-layout_mode = 2
-texture = ExtResource("2_cmhvr")
-stretch_mode = 3
-
-[node name="CoinDisplay" type="HBoxContainer" parent="CanvasLayer/HUD/VBoxContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="CoinCount" type="Label" parent="CanvasLayer/HUD/VBoxContainer/CoinDisplay"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "x0"
-label_settings = SubResource("LabelSettings_32qq0")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/VBoxContainer/CoinDisplay"]
-layout_mode = 2
-texture = ExtResource("3_ycdkr")
-stretch_mode = 3
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
 
@@ -1377,3 +1336,41 @@ layer_2/tile_data = PackedInt32Array(2621511, 262144, 1, 2555975, 327680, 0, 249
 
 [node name="Player" parent="." instance=ExtResource("11_kess4")]
 position = Vector2(84, 444)
+
+[connection signal="body_entered" from="TileMap/CompleteFlag" to="TileMap/CompleteFlag" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50684" to="TileMap/@Coin@50684" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50685" to="TileMap/@Coin@50685" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50686" to="TileMap/@Coin@50686" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50687" to="TileMap/@Coin@50687" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50688" to="TileMap/@Coin@50688" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50689" to="TileMap/@Coin@50689" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50690" to="TileMap/@Coin@50690" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/Spring" to="TileMap/Spring" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/Health" to="TileMap/Health" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/Gem" to="TileMap/Gem" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/Spikes" to="TileMap/Spikes" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50691" to="TileMap/@Coin@50691" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@50692" to="TileMap/@Spikes@50692" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50693" to="TileMap/@Coin@50693" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50694" to="TileMap/@Coin@50694" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50695" to="TileMap/@Coin@50695" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@50696" to="TileMap/@Spikes@50696" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@50697" to="TileMap/@Spikes@50697" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@50698" to="TileMap/@Spikes@50698" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50699" to="TileMap/@Coin@50699" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50700" to="TileMap/@Coin@50700" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50701" to="TileMap/@Coin@50701" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50702" to="TileMap/@Coin@50702" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Gem@50703" to="TileMap/@Gem@50703" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50704" to="TileMap/@Coin@50704" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50705" to="TileMap/@Coin@50705" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Health@50706" to="TileMap/@Health@50706" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50707" to="TileMap/@Coin@50707" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50708" to="TileMap/@Coin@50708" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spring@50709" to="TileMap/@Spring@50709" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50710" to="TileMap/@Coin@50710" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@50711" to="TileMap/@Spikes@50711" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50712" to="TileMap/@Coin@50712" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50713" to="TileMap/@Coin@50713" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@50714" to="TileMap/@Coin@50714" method="_on_body_entered" flags=18]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfqjx3j1j24sp"]
+
+[ext_resource type="Texture2D" uid="uid://cfak0xh7y3te5" path="res://assets/kenney_pixelplatformer/Tiles/tile_0044.png" id="1_0s15m"]
+[ext_resource type="Script" path="res://scripts/gui/hud.gd" id="1_ubfpr"]
+[ext_resource type="Texture2D" uid="uid://b1cd6upg218v5" path="res://assets/kenney_pixelplatformer/Tiles/tile_0151.png" id="2_5j6ys"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_32qq0"]
+font_size = 24
+font_color = Color(1, 0.392157, 0.0823529, 1)
+outline_size = 8
+
+[node name="HUD" type="MarginContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+script = ExtResource("1_ubfpr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HealthDisplay" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="HealthAmt" type="Label" parent="VBoxContainer/HealthDisplay"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_32qq0")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HealthDisplay"]
+layout_mode = 2
+texture = ExtResource("1_0s15m")
+stretch_mode = 3
+
+[node name="CoinDisplay" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="CoinCount" type="Label" parent="VBoxContainer/CoinDisplay"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x0"
+label_settings = SubResource("LabelSettings_32qq0")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CoinDisplay"]
+layout_mode = 2
+texture = ExtResource("2_5j6ys")
+stretch_mode = 3

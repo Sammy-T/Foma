@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cjvxwkq1dy4qp"]
+[gd_scene load_steps=17 format=3 uid="uid://cjvxwkq1dy4qp"]
 
 [ext_resource type="Texture2D" uid="uid://bojkimblc1j6q" path="res://assets/background-elements-redux-fix/Backgrounds/backgroundEmpty.png" id="1_e2j6o"]
 [ext_resource type="Script" path="res://scripts/gui/main_menu.gd" id="1_wa3o2"]
 [ext_resource type="Texture2D" uid="uid://00axrg1n4ed1" path="res://assets/kenney_pixelplatformer/Tilemap/tiles_packed.png" id="2_g3yi5"]
+[ext_resource type="Theme" uid="uid://bx3o3uf6ha5pg" path="res://res/theme.tres" id="3_abpr0"]
 [ext_resource type="PackedScene" uid="uid://d075imfme8o2t" path="res://scenes/pickups/coin.tscn" id="3_x0572"]
 [ext_resource type="PackedScene" uid="uid://ctbx2enob24vu" path="res://scenes/pickups/gem.tscn" id="4_mq5pb"]
 [ext_resource type="PackedScene" uid="uid://cqydta78dlp72" path="res://scenes/pickups/health.tscn" id="5_i38kb"]
@@ -1305,6 +1306,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_abpr0")
 
 [node name="Title" type="Label" parent="CanvasLayer2/VBoxContainer"]
 layout_mode = 2
@@ -1327,6 +1329,7 @@ offset_top = -40.0
 offset_right = 77.5
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_abpr0")
 
 [node name="Label" type="Label" parent="CanvasLayer2/Credit"]
 layout_mode = 2
@@ -1356,3 +1359,7 @@ texture = ExtResource("9_iw0to")
 flip_h = true
 
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/Gem" to="TileMap/Gem" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@44143" to="TileMap/@Coin@44143" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@44144" to="TileMap/@Coin@44144" method="_on_body_entered" flags=18]

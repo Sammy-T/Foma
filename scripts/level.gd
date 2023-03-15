@@ -2,6 +2,7 @@ extends Node2D
 
 
 const GameOver: PackedScene = preload("res://scenes/gui/game_over.tscn")
+const PauseMenu: PackedScene = preload("res://scenes/gui/pause_menu.tscn")
 
 @export var player: CharacterBody2D
 @export var next_level: PackedScene
@@ -29,6 +30,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	_update_debug()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_pause"):
+		var pause_menu: Node = PauseMenu.instantiate()
+		%CanvasLayer.add_child(pause_menu)
 
 
 # A helper used in deferring access to the TileMap's instantiated scene tiles

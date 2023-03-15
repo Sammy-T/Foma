@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfqjx3j1j24sp"]
 
-[ext_resource type="Texture2D" uid="uid://cfak0xh7y3te5" path="res://assets/kenney_pixelplatformer/Tiles/tile_0044.png" id="1_0s15m"]
 [ext_resource type="Script" path="res://scripts/gui/hud.gd" id="1_ubfpr"]
 [ext_resource type="Texture2D" uid="uid://b1cd6upg218v5" path="res://assets/kenney_pixelplatformer/Tiles/tile_0151.png" id="2_5j6ys"]
+[ext_resource type="Texture2D" uid="uid://ytixbp34hbf3" path="res://assets/kenney_pixelplatformer/Tiles/tile_0046.png" id="2_gvswv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_32qq0"]
 font_size = 24
@@ -24,19 +24,24 @@ script = ExtResource("1_ubfpr")
 layout_mode = 2
 
 [node name="HealthDisplay" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 alignment = 2
 
-[node name="HealthAmt" type="Label" parent="VBoxContainer/HealthDisplay"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_32qq0")
-
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HealthDisplay"]
 layout_mode = 2
-texture = ExtResource("1_0s15m")
-stretch_mode = 3
+texture = ExtResource("2_gvswv")
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HealthDisplay"]
+layout_mode = 2
+texture = ExtResource("2_gvswv")
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HealthDisplay"]
+layout_mode = 2
+texture = ExtResource("2_gvswv")
+flip_h = true
 
 [node name="CoinDisplay" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

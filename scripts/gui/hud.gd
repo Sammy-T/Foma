@@ -1,7 +1,12 @@
 extends MarginContainer
 
 
-@onready var health_display: Label = %HealthAmt
+const HEART_FULL: Texture2D = preload("res://assets/kenney_pixelplatformer/Tiles/tile_0044.png")
+const HEART_HALF: Texture2D = preload("res://assets/kenney_pixelplatformer/Tiles/tile_0045.png")
+const HEART_EMPTY: Texture2D = preload("res://assets/kenney_pixelplatformer/Tiles/tile_0046.png")
+
+@onready var health_display: HBoxContainer = %HealthDisplay
+@onready var hearts: Array[Node] = health_display.get_children()
 @onready var coin_display: Label = %CoinCount
 
 
@@ -16,9 +21,17 @@ extends MarginContainer
 
 
 func update_health_display(health: float) -> void:
-	health_display.text = "%s" % health
-	
-#	print(fmod(health, 1))
+	for i in hearts.size():
+		var heart: TextureRect = hearts[hearts.size() - (i + 1)]
+		
+		if health >= 1:
+			health -= 1
+			heart.texture = HEART_FULL
+		elif is_equal_approx(health, 0.5):
+			health -= 0.5
+			heart.texture = HEART_HALF
+		else:
+			heart.texture = HEART_EMPTY
 
 
 func update_coin_display(coin_count: int) -> void:

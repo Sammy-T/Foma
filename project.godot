@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Platformer Play"
+config/name="Foma"
+config/description="A mini platformer"
 run/main_scene="res://scenes/gui/main_menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"

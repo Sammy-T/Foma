@@ -1,0 +1,201 @@
+[gd_scene load_steps=10 format=3 uid="uid://yyr3mioqalxq"]
+
+[ext_resource type="Script" path="res://scripts/complete_flag.gd" id="1_hakb2"]
+[ext_resource type="Texture2D" uid="uid://ewvmduff07y6" path="res://assets/kenney_pixelplatformer/Custom/flag_pole.png" id="1_qjlcq"]
+[ext_resource type="Texture2D" uid="uid://ci045pistqu8n" path="res://assets/kenney_pixelplatformer/Tiles/tile_0112.png" id="2_3luap"]
+[ext_resource type="Texture2D" uid="uid://ccfrqtpdteoqb" path="res://assets/kenney_pixelplatformer/Tiles/tile_0111.png" id="3_r31sd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jqnb"]
+size = Vector2(34, 37)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dvwbt"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 56.7
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 113.92
+initial_velocity_max = 164.55
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 166.7
+scale_min = 4.0
+scale_max = 6.0
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+turbulence_enabled = true
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.05
+
+[sub_resource type="Animation" id="Animation_aey3v"]
+resource_name = "raise"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(6, -2), Vector2(6, -20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flag:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.482353), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flag:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_3luap"), ExtResource("3_r31sd"), ExtResource("2_3luap"), ExtResource("3_r31sd"), ExtResource("2_3luap"), ExtResource("3_r31sd"), ExtResource("2_3luap"), ExtResource("3_r31sd"), ExtResource("2_3luap"), ExtResource("3_r31sd"), ExtResource("2_3luap")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ro3pu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flag:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.482353)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flag:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3luap")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pe6bd"]
+_data = {
+"RESET": SubResource("Animation_ro3pu"),
+"raise": SubResource("Animation_aey3v")
+}
+
+[node name="CompleteFlag" type="Area2D"]
+collision_mask = 2
+input_pickable = false
+monitorable = false
+script = ExtResource("1_hakb2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_8jqnb")
+
+[node name="FlagPole" type="Sprite2D" parent="."]
+position = Vector2(6.163, -11)
+texture = ExtResource("1_qjlcq")
+
+[node name="Flag" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.482353)
+position = Vector2(6, -2)
+texture = ExtResource("2_3luap")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(0, 3)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_dvwbt")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.29
+trail_enabled = true
+trail_lifetime = 0.27
+trail_sections = 4
+trail_section_subdivisions = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_pe6bd")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

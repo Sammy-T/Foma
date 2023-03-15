@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgpusrcwttdvk"]
+
+[ext_resource type="Script" path="res://scripts/gui/game_over.gd" id="1_kgjb0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5eqmw"]
+font_size = 61
+outline_size = 5
+outline_color = Color(0.447059, 0.447059, 0.447059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iy1vv"]
+font_size = 25
+outline_size = 5
+outline_color = Color(0.537255, 0.537255, 0.537255, 1)
+
+[node name="GameFinished" type="VBoxContainer"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 61
+script = ExtResource("1_kgjb0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Congratulations"
+label_settings = SubResource("LabelSettings_5eqmw")
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "You've completed the game"
+label_settings = SubResource("LabelSettings_iy1vv")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 44
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Retry"
+
+[node name="MainMenuButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Main Menu"
+
+[connection signal="pressed" from="HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

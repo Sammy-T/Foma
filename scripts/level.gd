@@ -1,8 +1,9 @@
 extends Node2D
 
 
-const GameOver: PackedScene = preload("res://scenes/gui/game_over.tscn")
 const PauseMenu: PackedScene = preload("res://scenes/gui/pause_menu.tscn")
+const GameOver: PackedScene = preload("res://scenes/gui/game_over.tscn")
+const GameFinished: PackedScene = preload("res://scenes/gui/game_finished.tscn")
 
 @export var player: CharacterBody2D
 @export var next_level: PackedScene
@@ -74,9 +75,9 @@ func _on_player_death() -> void:
 
 func _on_level_complete() -> void:
 	if !next_level:
-		## TODO: Display Game Finished menu
-		printerr("%s %s - No next level to load" \
-				% [Time.get_time_string_from_system(), self.name])
+		await get_tree().create_timer(2).timeout
+		var game_finished: Node = GameFinished.instantiate()
+		%CanvasLayer.add_child(game_finished)
 		return
 	
 	await get_tree().create_timer(2).timeout

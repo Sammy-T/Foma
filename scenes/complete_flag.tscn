@@ -152,6 +152,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"level_complete"],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pe6bd"]
 _data = {
@@ -159,7 +173,7 @@ _data = {
 "raise": SubResource("Animation_aey3v")
 }
 
-[node name="CompleteFlag" type="Area2D"]
+[node name="CompleteFlag" type="Area2D" groups=["complete_flag"]]
 collision_mask = 2
 input_pickable = false
 monitorable = false

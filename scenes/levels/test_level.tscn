@@ -1278,7 +1278,7 @@ sources/0 = SubResource("TileSetAtlasSource_u5jm5")
 sources/1 = SubResource("TileSetScenesCollectionSource_3ejta")
 sources/2 = SubResource("TileSetScenesCollectionSource_ig2e0")
 
-[node name="Level2" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_c2d0j")
 player = NodePath("Player")
 
@@ -1377,41 +1377,3 @@ layer_2/tile_data = PackedInt32Array(2621511, 262144, 1, 2555975, 327680, 0, 249
 
 [node name="Player" parent="." instance=ExtResource("11_kess4")]
 position = Vector2(84, 444)
-
-[connection signal="body_entered" from="TileMap/CompleteFlag" to="TileMap/CompleteFlag" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121392" to="TileMap/@Coin@121392" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121393" to="TileMap/@Coin@121393" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121394" to="TileMap/@Coin@121394" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121395" to="TileMap/@Coin@121395" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121396" to="TileMap/@Coin@121396" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121397" to="TileMap/@Coin@121397" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121398" to="TileMap/@Coin@121398" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Spring" to="TileMap/Spring" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Health" to="TileMap/Health" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Gem" to="TileMap/Gem" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Spikes" to="TileMap/Spikes" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121399" to="TileMap/@Coin@121399" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@121400" to="TileMap/@Spikes@121400" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121401" to="TileMap/@Coin@121401" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121402" to="TileMap/@Coin@121402" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121403" to="TileMap/@Coin@121403" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@121404" to="TileMap/@Spikes@121404" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@121405" to="TileMap/@Spikes@121405" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@121406" to="TileMap/@Spikes@121406" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121407" to="TileMap/@Coin@121407" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121408" to="TileMap/@Coin@121408" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121409" to="TileMap/@Coin@121409" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121410" to="TileMap/@Coin@121410" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Gem@121411" to="TileMap/@Gem@121411" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121412" to="TileMap/@Coin@121412" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121413" to="TileMap/@Coin@121413" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Health@121414" to="TileMap/@Health@121414" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121415" to="TileMap/@Coin@121415" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121416" to="TileMap/@Coin@121416" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spring@121417" to="TileMap/@Spring@121417" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121418" to="TileMap/@Coin@121418" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@121419" to="TileMap/@Spikes@121419" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121420" to="TileMap/@Coin@121420" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121421" to="TileMap/@Coin@121421" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@121422" to="TileMap/@Coin@121422" method="_on_body_entered" flags=18]

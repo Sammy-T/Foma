@@ -4,6 +4,7 @@ extends Node2D
 const GameOver: PackedScene = preload("res://scenes/gui/game_over.tscn")
 
 @export var player: CharacterBody2D
+@export var next_level: PackedScene
 
 var coin_count: int = 0
 
@@ -17,7 +18,7 @@ var coin_count: int = 0
 func _ready() -> void:
 	# Use call_deferred to allow the TileMap's scene tiles to be instantiated
 	# before trying to access them. (https://github.com/godotengine/godot/issues/57567)
-	call_deferred("_init_valuables")
+	call_deferred("_init_scene_tiles")
 	
 	_update_health_display(player.health)
 	
@@ -31,11 +32,15 @@ func _process(_delta: float) -> void:
 
 
 # A helper used in deferring access to the TileMap's instantiated scene tiles
-func _init_valuables() -> void:
+func _init_scene_tiles() -> void:
 	var valuables: Array[Node] = get_tree().get_nodes_in_group("valuable")
+	var complete_flags: Array[Node] = get_tree().get_nodes_in_group("complete_flag")
 	
 	for valuable in valuables:
 		valuable.valuable_collected.connect(_update_coin_count)
+	
+	for flag in complete_flags:
+		flag.level_complete.connect(_on_level_complete)
 
 
 func _update_debug() -> void:
@@ -58,3 +63,14 @@ func _on_player_death() -> void:
 	# Display the Game Over menu
 	var game_over: Node = GameOver.instantiate()
 	%CanvasLayer.add_child(game_over)
+
+
+func _on_level_complete() -> void:
+	if !next_level:
+		## TODO: Display Game Finished menu
+		printerr("%s %s - No next level to load" \
+				% [Time.get_time_string_from_system(), self.name])
+		return
+	
+	await get_tree().create_timer(2).timeout
+	get_tree().change_scene_to_packed(next_level)

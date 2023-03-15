@@ -1,6 +1,8 @@
 extends Node2D
 
 
+const GameOver: PackedScene = preload("res://scenes/gui/game_over.tscn")
+
 @export var player: CharacterBody2D
 
 var coin_count: int = 0
@@ -18,7 +20,9 @@ func _ready() -> void:
 	call_deferred("_init_valuables")
 	
 	_update_health_display(player.health)
+	
 	player.health_changed.connect(_update_health_display)
+	player.player_died.connect(_on_player_death)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,3 +52,9 @@ func _update_coin_count(value: int) -> void:
 
 func _update_health_display(health: float) -> void:
 	health_display.text = "%s" % health
+
+
+func _on_player_death() -> void:
+	# Display the Game Over menu
+	var game_over: Node = GameOver.instantiate()
+	%CanvasLayer.add_child(game_over)

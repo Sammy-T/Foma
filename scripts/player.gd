@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 signal health_changed(health: float)
+signal player_died
 
 const MAX_SPEED: float = 250.0
 const ACCELERATION: float = 20.0

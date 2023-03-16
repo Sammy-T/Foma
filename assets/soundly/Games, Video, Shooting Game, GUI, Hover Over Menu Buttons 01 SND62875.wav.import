@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bq1yvmv0je1b7"
+path="res://.godot/imported/Games, Video, Shooting Game, GUI, Hover Over Menu Buttons 01 SND62875.wav-00860d057846eca43b3af5c4f509f93b.sample"
+
+[deps]
+
+source_file="res://assets/soundly/Games, Video, Shooting Game, GUI, Hover Over Menu Buttons 01 SND62875.wav"
+dest_files=["res://.godot/imported/Games, Video, Shooting Game, GUI, Hover Over Menu Buttons 01 SND62875.wav-00860d057846eca43b3af5c4f509f93b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

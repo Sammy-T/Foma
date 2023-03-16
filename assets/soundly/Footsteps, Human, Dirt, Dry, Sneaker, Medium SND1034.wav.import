@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cusyc5nixihnu"
+path="res://.godot/imported/Footsteps, Human, Dirt, Dry, Sneaker, Medium SND1034.wav-b455e653f7e45208c05d51c4ba4a3e2a.sample"
+
+[deps]
+
+source_file="res://assets/soundly/Footsteps, Human, Dirt, Dry, Sneaker, Medium SND1034.wav"
+dest_files=["res://.godot/imported/Footsteps, Human, Dirt, Dry, Sneaker, Medium SND1034.wav-b455e653f7e45208c05d51c4ba4a3e2a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

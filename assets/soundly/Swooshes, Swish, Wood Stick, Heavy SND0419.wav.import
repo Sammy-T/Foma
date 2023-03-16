@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://liqc1mmnto5s"
+path="res://.godot/imported/Swooshes, Swish, Wood Stick, Heavy SND0419.wav-aea7a35bbd0bd2a8f09d2c6e3023dacd.sample"
+
+[deps]
+
+source_file="res://assets/soundly/Swooshes, Swish, Wood Stick, Heavy SND0419.wav"
+dest_files=["res://.godot/imported/Swooshes, Swish, Wood Stick, Heavy SND0419.wav-aea7a35bbd0bd2a8f09d2c6e3023dacd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

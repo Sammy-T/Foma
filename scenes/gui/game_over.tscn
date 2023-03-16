@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://8qenuwr86gw5"]
+[gd_scene load_steps=5 format=3 uid="uid://8qenuwr86gw5"]
 
 [ext_resource type="Script" path="res://scripts/gui/game_over.gd" id="1_kms8d"]
 [ext_resource type="Theme" uid="uid://bx3o3uf6ha5pg" path="res://res/theme.tres" id="1_uf5l5"]
+[ext_resource type="AudioStream" uid="uid://bq1yvmv0je1b7" path="res://assets/soundly/Games, Video, Shooting Game, GUI, Hover Over Menu Buttons 01 SND62875.wav" id="3_ev4ve"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5eqmw"]
 font_size = 61
@@ -48,5 +49,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Main Menu"
 
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_ev4ve")
+volume_db = -17.802
+
+[connection signal="focus_entered" from="HBoxContainer/RetryButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/MainMenuButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="HBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

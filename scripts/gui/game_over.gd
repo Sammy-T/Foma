@@ -16,6 +16,10 @@ func _ready() -> void:
 #	pass
 
 
+func _on_button_focus_entered() -> void:
+	%SelectSound.play()
+
+
 func _on_retry_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()

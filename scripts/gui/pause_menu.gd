@@ -22,6 +22,10 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
+func _on_button_focus_entered() -> void:
+	%SelectSound.play()
+
+
 func _on_resume_button_pressed() -> void:
 	_resume_scene()
 

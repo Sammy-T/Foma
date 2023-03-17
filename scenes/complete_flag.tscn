@@ -184,7 +184,7 @@ position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_8jqnb")
 
 [node name="FlagPole" type="Sprite2D" parent="."]
-position = Vector2(6.163, -11)
+position = Vector2(6, -11)
 texture = ExtResource("1_qjlcq")
 
 [node name="Flag" type="Sprite2D" parent="."]

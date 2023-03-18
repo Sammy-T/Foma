@@ -22,6 +22,7 @@ var was_on_floor: bool = false
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var anim_tree: AnimationTree = %AnimationTree
 @onready var run_particles: GPUParticles2D = %RunParticles
+@onready var sfx_jump: AudioStreamPlayer = %Jump
 @onready var coyote_timer: Timer = %CoyoteTimer
 
 
@@ -38,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 		_cancel_coyote_time()
-		%Jump.play()
+		sfx_jump.play()
 	elif Input.is_action_just_released("jump") and is_jumping:
 		if velocity.y < 0:
 			velocity.y *= 0.5 # Cut the jump short

@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://bypvbvb68a2v4"]
+[gd_scene load_steps=34 format=3 uid="uid://bypvbvb68a2v4"]
 
 [ext_resource type="Texture2D" uid="uid://53og0akas2i8" path="res://assets/kenney_pixelplatformer/Characters/character_0000.png" id="1_7nnuc"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_f0a1w"]
 [ext_resource type="AudioStream" uid="uid://cusyc5nixihnu" path="res://assets/soundly/Footsteps, Human, Dirt, Dry, Sneaker, Medium SND1034.wav" id="3_4g8yx"]
 [ext_resource type="Texture2D" uid="uid://vwm6hnqkp320" path="res://assets/kenney_pixelplatformer/Characters/character_0001.png" id="3_010vf"]
 [ext_resource type="AudioStream" uid="uid://c82ndt4f16n2s" path="res://assets/sfx/sfx_jump_01.wav" id="4_oolqe"]
+[ext_resource type="AudioStream" uid="uid://doqw71avbxfc4" path="res://assets/sfx/sfx_dmg_01.wav" id="5_pf2u7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1vhj"]
 height = 28.0
@@ -159,6 +160,18 @@ tracks/7/path = NodePath("Sfx/Footstep:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sfx/Dmg:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -388,6 +401,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 0.494118, 0.439216, 1), Color(1, 1, 1, 1), Color(1, 0.494118, 0.439216, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sfx/Dmg:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vsghj"]
 _data = {
@@ -502,6 +527,10 @@ volume_db = -26.579
 unique_name_in_owner = true
 stream = ExtResource("4_oolqe")
 volume_db = -18.189
+
+[node name="Dmg" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("5_pf2u7")
+volume_db = -8.758
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

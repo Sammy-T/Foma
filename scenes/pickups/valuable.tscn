@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bal8pcv3uyy6a"]
+[gd_scene load_steps=5 format=3 uid="uid://bal8pcv3uyy6a"]
 
 [ext_resource type="Script" path="res://scripts/valuable.gd" id="1_7qmtx"]
+[ext_resource type="AudioStream" uid="uid://wi2oqoad1awy" path="res://assets/sfx/sfx_pickup_01.wav" id="2_u33af"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pn7ov"]
 
@@ -24,5 +25,9 @@ process_mode = 4
 libraries = {
 "": SubResource("AnimationLibrary_0cqv4")
 }
+
+[node name="Pickup" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_u33af")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

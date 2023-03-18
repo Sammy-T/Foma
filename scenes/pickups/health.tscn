@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqydta78dlp72"]
+[gd_scene load_steps=9 format=3 uid="uid://cqydta78dlp72"]
 
 [ext_resource type="Script" path="res://scripts/health.gd" id="1_g2qtb"]
 [ext_resource type="Texture2D" uid="uid://cfak0xh7y3te5" path="res://assets/kenney_pixelplatformer/Tiles/tile_0044.png" id="1_yqppk"]
 [ext_resource type="Animation" uid="uid://ifknmtdx6hs5" path="res://res/animation/pulse.res" id="2_ont1h"]
 [ext_resource type="Animation" uid="uid://cttaq3hlmno6o" path="res://res/animation/collect.res" id="4_tvptp"]
+[ext_resource type="AudioStream" uid="uid://wi2oqoad1awy" path="res://assets/sfx/sfx_pickup_01.wav" id="5_o32qh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j7cuj"]
 radius = 12.0
@@ -85,5 +86,9 @@ autoplay = "pulse"
 libraries = {
 "": SubResource("AnimationLibrary_x3tlp")
 }
+
+[node name="Pickup" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_o32qh")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

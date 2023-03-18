@@ -4,6 +4,7 @@ extends Area2D
 const HEAL_AMOUNT: float = 0.5
 
 @onready var anim_player: AnimationPlayer = %AnimationPlayer
+@onready var sfx_pickup: AudioStreamPlayer = %Pickup
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,6 +23,8 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	# Free the node if the health was successfully added
 	if body.update_health(HEAL_AMOUNT):
+		sfx_pickup.play()
+		
 		if anim_player.has_animation("collect"):
 			anim_player.play("collect")
 		else:

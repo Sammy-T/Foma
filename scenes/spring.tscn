@@ -42,6 +42,6 @@ frame_progress = 1.0
 [node name="Bounce" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_xmbpb")
-volume_db = -5.621
+volume_db = -7.495
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

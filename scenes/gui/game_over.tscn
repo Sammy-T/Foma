@@ -52,7 +52,7 @@ text = "Main Menu"
 [node name="SelectSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_ev4ve")
-volume_db = -47.783
+volume_db = -11.243
 
 [connection signal="focus_entered" from="HBoxContainer/RetryButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]

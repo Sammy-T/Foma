@@ -57,7 +57,7 @@ text = "Main Menu"
 [node name="SelectSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_ppnby")
-volume_db = -47.783
+volume_db = -11.243
 
 [connection signal="focus_entered" from="VBoxContainer/ResumeButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -521,16 +521,15 @@ explosiveness = 0.78
 
 [node name="Footstep" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("3_4g8yx")
-volume_db = -26.579
+volume_db = -8.433
 
 [node name="Jump" type="AudioStreamPlayer" parent="Sfx"]
 unique_name_in_owner = true
 stream = ExtResource("4_oolqe")
-volume_db = -21.0
+volume_db = -16.865
 
 [node name="Dmg" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_pf2u7")
-volume_db = -8.758
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

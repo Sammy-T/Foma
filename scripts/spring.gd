@@ -4,6 +4,7 @@ extends Area2D
 const SPRING_VELOCITY: float = -700.0
 
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
+@onready var sfx_bounce: AudioStreamPlayer = %Bounce
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,6 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	animated_sprite.play("default") # Play the bounce animation
+	sfx_bounce.play() # Play the bounce sfx
 	
 	# Ensure the bounce doesn't get confused with player input.
 	# This can happen if the player jumps onto a Spring and releases the jump

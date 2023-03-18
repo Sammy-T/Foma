@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwqcboh6s02yw"]
+[gd_scene load_steps=7 format=3 uid="uid://bwqcboh6s02yw"]
 
 [ext_resource type="Script" path="res://scripts/spring.gd" id="1_lhcdy"]
 [ext_resource type="Texture2D" uid="uid://cup0jbbibutto" path="res://assets/kenney_pixelplatformer/Tiles/tile_0108.png" id="1_yqpdi"]
 [ext_resource type="Texture2D" uid="uid://dip8bd503qngb" path="res://assets/kenney_pixelplatformer/Tiles/tile_0107.png" id="2_kghxn"]
+[ext_resource type="AudioStream" uid="uid://c8eloi07aclji" path="res://assets/sfx/sfx_bounce_01.wav" id="4_xmbpb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fy8xy"]
 
@@ -37,5 +38,10 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_y1ybw")
 frame = 2
 frame_progress = 1.0
+
+[node name="Bounce" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_xmbpb")
+volume_db = -5.621
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

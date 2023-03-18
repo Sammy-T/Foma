@@ -526,7 +526,7 @@ volume_db = -26.579
 [node name="Jump" type="AudioStreamPlayer" parent="Sfx"]
 unique_name_in_owner = true
 stream = ExtResource("4_oolqe")
-volume_db = -18.189
+volume_db = -21.0
 
 [node name="Dmg" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_pf2u7")

@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 		_cancel_coyote_time()
+		%Jump.play()
 	elif Input.is_action_just_released("jump") and is_jumping:
 		if velocity.y < 0:
 			velocity.y *= 0.5 # Cut the jump short

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://yyr3mioqalxq"]
+[gd_scene load_steps=11 format=3 uid="uid://yyr3mioqalxq"]
 
 [ext_resource type="Script" path="res://scripts/complete_flag.gd" id="1_hakb2"]
 [ext_resource type="Texture2D" uid="uid://ewvmduff07y6" path="res://assets/kenney_pixelplatformer/Custom/flag_pole.png" id="1_qjlcq"]
 [ext_resource type="Texture2D" uid="uid://ci045pistqu8n" path="res://assets/kenney_pixelplatformer/Tiles/tile_0112.png" id="2_3luap"]
 [ext_resource type="Texture2D" uid="uid://ccfrqtpdteoqb" path="res://assets/kenney_pixelplatformer/Tiles/tile_0111.png" id="3_r31sd"]
+[ext_resource type="AudioStream" uid="uid://jsudctpqvq8t" path="res://assets/sfx/applause01.ogg" id="5_i7dk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jqnb"]
 size = Vector2(34, 37)
@@ -88,6 +89,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Completed:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_aey3v"]
 resource_name = "raise"
@@ -166,6 +179,18 @@ tracks/5/keys = {
 "method": &"emit_signal"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Completed:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pe6bd"]
 _data = {
@@ -211,5 +236,9 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_pe6bd")
 }
+
+[node name="Completed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_i7dk5")
+volume_db = -25.298
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

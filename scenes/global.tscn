@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbfspj463htwv"]
+
+[ext_resource type="AudioStream" uid="uid://cm8iknycptimo" path="res://assets/foma_theme.ogg" id="1_p3ffv"]
+
+[node name="Global" type="Node"]
+process_mode = 3
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_p3ffv")
+volume_db = -10.306
+autoplay = true

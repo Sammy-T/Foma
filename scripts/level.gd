@@ -17,6 +17,8 @@ var coin_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_init_title_card()
+	
 	# Use call_deferred to allow the TileMap's scene tiles to be instantiated
 	# before trying to access them. (https://github.com/godotengine/godot/issues/57567)
 	call_deferred("_init_scene_tiles")
@@ -36,6 +38,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_pause"):
 		var pause_menu: Node = PauseMenu.instantiate()
 		%CanvasLayer.add_child(pause_menu)
+
+
+func _init_title_card() -> void:
+	var level_title: String = get_tree().current_scene.scene_file_path
+	var l_slash: int = level_title.rfind("/") + 1
+	var l_period: int = level_title.rfind(".")
+	
+	%TitleCard.text = level_title.substr(l_slash, l_period - l_slash).replace("_", " ")
 
 
 # A helper used in deferring access to the TileMap's instantiated scene tiles
@@ -69,11 +79,11 @@ func _on_player_death() -> void:
 
 
 func _on_level_complete() -> void:
+	await get_tree().create_timer(2).timeout
+	
 	if !next_level:
-		await get_tree().create_timer(2).timeout
 		var game_finished: Node = GameFinished.instantiate()
 		%CanvasLayer.add_child(game_finished)
 		return
 	
-	await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_packed(next_level)

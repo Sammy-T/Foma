@@ -484,6 +484,8 @@ shape = SubResource("CapsuleShape2D_b1vhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, 1.19919)
+scale = Vector2(1, 0.900067)
 texture = ExtResource("1_7nnuc")
 
 [node name="Camera2D" type="Camera2D" parent="."]

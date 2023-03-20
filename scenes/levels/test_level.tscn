@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqfy1xm4q13l1"]
+[gd_scene load_steps=21 format=3 uid="uid://dqfy1xm4q13l1"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_c2d0j"]
 [ext_resource type="PackedScene" uid="uid://cfqjx3j1j24sp" path="res://scenes/gui/hud.tscn" id="2_wn6jx"]
@@ -14,6 +14,11 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_32qq0"]
 font_size = 24
+font_color = Color(1, 0.392157, 0.0823529, 1)
+outline_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_upe3t"]
+font_size = 34
 font_color = Color(1, 0.392157, 0.0823529, 1)
 outline_size = 8
 
@@ -1277,6 +1282,67 @@ sources/0 = SubResource("TileSetAtlasSource_u5jm5")
 sources/1 = SubResource("TileSetScenesCollectionSource_3ejta")
 sources/2 = SubResource("TileSetScenesCollectionSource_ig2e0")
 
+[sub_resource type="Animation" id="Animation_wb813"]
+resource_name = "display_title_card"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/MarginContainer/TitleCard:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/MarginContainer/TitleCard:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iqw7i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/MarginContainer/TitleCard:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/MarginContainer/TitleCard:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ux7wp"]
+_data = {
+"RESET": SubResource("Animation_iqw7i"),
+"display_title_card": SubResource("Animation_wb813")
+}
+
 [node name="Level" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_c2d0j")
 player = NodePath("Player")
@@ -1314,6 +1380,24 @@ texture = ExtResource("4_7eohb")
 centered = false
 offset = Vector2(0, -400)
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.5
+offset_right = 20.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 5
+
+[node name="TitleCard" type="Label" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "Level"
+label_settings = SubResource("LabelSettings_upe3t")
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_gse5f")
 format = 2
@@ -1337,40 +1421,46 @@ layer_2/tile_data = PackedInt32Array(2621511, 262144, 1, 2555975, 327680, 0, 249
 [node name="Player" parent="." instance=ExtResource("11_kess4")]
 position = Vector2(84, 444)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "display_title_card"
+libraries = {
+"": SubResource("AnimationLibrary_ux7wp")
+}
+
 [connection signal="body_entered" from="TileMap/CompleteFlag" to="TileMap/CompleteFlag" method="_on_body_entered" flags=18]
 [connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47575" to="TileMap/@Coin@47575" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47576" to="TileMap/@Coin@47576" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47577" to="TileMap/@Coin@47577" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47578" to="TileMap/@Coin@47578" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47579" to="TileMap/@Coin@47579" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47580" to="TileMap/@Coin@47580" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47581" to="TileMap/@Coin@47581" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143733" to="TileMap/@Coin@143733" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143734" to="TileMap/@Coin@143734" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143735" to="TileMap/@Coin@143735" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143736" to="TileMap/@Coin@143736" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143737" to="TileMap/@Coin@143737" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143738" to="TileMap/@Coin@143738" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143739" to="TileMap/@Coin@143739" method="_on_body_entered" flags=18]
 [connection signal="body_entered" from="TileMap/Spring" to="TileMap/Spring" method="_on_body_entered" flags=18]
 [connection signal="body_entered" from="TileMap/Health" to="TileMap/Health" method="_on_body_entered" flags=18]
 [connection signal="body_entered" from="TileMap/Gem" to="TileMap/Gem" method="_on_body_entered" flags=18]
 [connection signal="body_entered" from="TileMap/Spikes" to="TileMap/Spikes" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47582" to="TileMap/@Coin@47582" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@47583" to="TileMap/@Spikes@47583" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47584" to="TileMap/@Coin@47584" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47585" to="TileMap/@Coin@47585" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47586" to="TileMap/@Coin@47586" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@47587" to="TileMap/@Spikes@47587" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@47588" to="TileMap/@Spikes@47588" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@47589" to="TileMap/@Spikes@47589" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47590" to="TileMap/@Coin@47590" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47591" to="TileMap/@Coin@47591" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47592" to="TileMap/@Coin@47592" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47593" to="TileMap/@Coin@47593" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Gem@47594" to="TileMap/@Gem@47594" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47595" to="TileMap/@Coin@47595" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47596" to="TileMap/@Coin@47596" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Health@47597" to="TileMap/@Health@47597" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47598" to="TileMap/@Coin@47598" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47599" to="TileMap/@Coin@47599" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spring@47600" to="TileMap/@Spring@47600" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47601" to="TileMap/@Coin@47601" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Spikes@47602" to="TileMap/@Spikes@47602" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47603" to="TileMap/@Coin@47603" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47604" to="TileMap/@Coin@47604" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@47605" to="TileMap/@Coin@47605" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143740" to="TileMap/@Coin@143740" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@143741" to="TileMap/@Spikes@143741" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143742" to="TileMap/@Coin@143742" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143743" to="TileMap/@Coin@143743" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143744" to="TileMap/@Coin@143744" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@143745" to="TileMap/@Spikes@143745" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@143746" to="TileMap/@Spikes@143746" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@143747" to="TileMap/@Spikes@143747" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143748" to="TileMap/@Coin@143748" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143749" to="TileMap/@Coin@143749" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143750" to="TileMap/@Coin@143750" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143751" to="TileMap/@Coin@143751" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Gem@143752" to="TileMap/@Gem@143752" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143753" to="TileMap/@Coin@143753" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143754" to="TileMap/@Coin@143754" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Health@143755" to="TileMap/@Health@143755" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143756" to="TileMap/@Coin@143756" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143757" to="TileMap/@Coin@143757" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spring@143758" to="TileMap/@Spring@143758" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143759" to="TileMap/@Coin@143759" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Spikes@143760" to="TileMap/@Spikes@143760" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143761" to="TileMap/@Coin@143761" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143762" to="TileMap/@Coin@143762" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@143763" to="TileMap/@Coin@143763" method="_on_body_entered" flags=18]

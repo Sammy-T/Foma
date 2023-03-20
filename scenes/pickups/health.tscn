@@ -91,5 +91,6 @@ libraries = {
 unique_name_in_owner = true
 stream = ExtResource("5_o32qh")
 volume_db = -5.622
+bus = &"Sfx"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -240,5 +240,6 @@ libraries = {
 [node name="Completed" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_i7dk5")
 volume_db = -6.559
+bus = &"Sfx"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

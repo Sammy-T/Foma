@@ -66,6 +66,7 @@ text = "Main Menu"
 unique_name_in_owner = true
 stream = ExtResource("3_hlnth")
 volume_db = -11.243
+bus = &"UI"
 
 [connection signal="focus_entered" from="HBoxContainer/RetryButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]

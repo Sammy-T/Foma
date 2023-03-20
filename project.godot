@@ -24,6 +24,10 @@ Global="*res://scenes/global.tscn"
 
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/Sammy/Documents/Video Projects/Foma/foma_gameplay.avi"
+
 [input]
 
 move_left={

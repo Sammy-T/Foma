@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddc2yu7evdsa"]
+[gd_scene load_steps=6 format=3 uid="uid://ddc2yu7evdsa"]
 
 [ext_resource type="Script" path="res://scripts/gui/pause_menu.gd" id="1_3fry7"]
 [ext_resource type="Theme" uid="uid://bx3o3uf6ha5pg" path="res://res/theme.tres" id="1_rf20a"]
@@ -8,6 +8,10 @@
 font_size = 61
 outline_size = 5
 outline_color = Color(0.447059, 0.447059, 0.447059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jtla5"]
+outline_size = 4
+outline_color = Color(0.317647, 0.317647, 0.317647, 1)
 
 [node name="PauseMenu" type="VBoxContainer"]
 process_mode = 3
@@ -54,6 +58,74 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Main Menu"
 
+[node name="VolumeControl" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VolumeControl"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Main"
+label_settings = SubResource("LabelSettings_jtla5")
+
+[node name="MainVolume" type="HSlider" parent="VBoxContainer/VolumeControl"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="VolumeControl2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VolumeControl2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_jtla5")
+
+[node name="MusicVolume" type="HSlider" parent="VBoxContainer/VolumeControl2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="VolumeControl3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VolumeControl3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "UI"
+label_settings = SubResource("LabelSettings_jtla5")
+
+[node name="UIVolume" type="HSlider" parent="VBoxContainer/VolumeControl3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="VolumeControl4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VolumeControl4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Sfx"
+label_settings = SubResource("LabelSettings_jtla5")
+
+[node name="SfxVolume" type="HSlider" parent="VBoxContainer/VolumeControl4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
 [node name="SelectSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_ppnby")
@@ -66,3 +138,7 @@ bus = &"UI"
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="focus_entered" from="VBoxContainer/MainMenuButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/VolumeControl/MainVolume" to="." method="_on_main_volume_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VolumeControl2/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VolumeControl3/UIVolume" to="." method="_on_ui_volume_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/VolumeControl4/SfxVolume" to="." method="_on_sfx_volume_value_changed"]

@@ -1,7 +1,15 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bx3o3uf6ha5pg"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bx3o3uf6ha5pg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrop8"]
 bg_color = Color(0.137255, 0.407843, 0.376471, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ifln"]
+bg_color = Color(0.137255, 0.407843, 0.376471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83hk4"]
+bg_color = Color(0.249062, 0.652602, 0.605206, 1)
+
 [resource]
 Button/styles/focus = SubResource("StyleBoxFlat_jrop8")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_4ifln")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_83hk4")

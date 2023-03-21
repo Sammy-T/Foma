@@ -1359,7 +1359,7 @@ texture = ExtResource("9_iw0to")
 flip_h = true
 
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/Gem" to="TileMap/Gem" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@28060" to="TileMap/@Coin@28060" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Coin@28061" to="TileMap/@Coin@28061" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@18844" to="TileMap/@Coin@18844" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Gem@18845" to="TileMap/@Gem@18845" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@18846" to="TileMap/@Coin@18846" method="_on_body_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Coin@18847" to="TileMap/@Coin@18847" method="_on_body_entered" flags=18]
